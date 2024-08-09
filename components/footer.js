@@ -1,9 +1,17 @@
 import Link from "next/link";
-import Nav from "./nav";
+import { navItems } from "@/lib/utils/navitems";
 
 export default function Footer() {
   return (
     <footer className="flex flex-col items-center p-4">
+      <ul className="flex">
+        {navItems.map((item) => (
+          <li key={item.id} className="mr-2">
+            <Link href={item.url}>{item.text}</Link>
+          </li>
+        ))}
+      </ul>
+
       <ul className="flex flex-col items-center mt-4">
         <li>
           <Link href="/acerca_de">POLÍTICA DE PRIVACIDAD</Link>
@@ -12,8 +20,7 @@ export default function Footer() {
           <Link href="/acerca_de">TÉRMINOS Y CONDICIONES</Link>
         </li>
       </ul>
-      <span className="mb-2">Hecho por Sergio Lara</span>
-      <span>&copy; Miquel Rodrigo</span>
+      <span>Copyright &copy; Miquel Rodrigo 2024</span>
     </footer>
   );
 }

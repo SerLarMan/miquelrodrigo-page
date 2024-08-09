@@ -1,28 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { navItems } from "@/lib/utils/navitems";
+import IconButton from "./icon-button";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+import { detectWindowWidth } from "@/lib/utils/window";
 
-const Nav = () => {
-  // State to manage the navbar's visibility
+export default function NavBar() {
+  // Estado para manejar la visibilidad del navbar
   const [nav, setNav] = useState(false);
 
-  // Toggle function to handle the navbar's display
+  // Oculta o muestra el menu de nav
   const handleNav = () => {
     setNav(!nav);
   };
 
-  // Array containing navigation items
-  const navItems = [
-    { id: 1, text: "INICIO", url: "/" },
-    { id: 2, text: "BIOGRAFÍA", url: "/biografia" },
-    { id: 3, text: "GALERÍA", url: "/galeria" },
-    { id: 4, text: "NOTICIAS", url: "/noticias" },
-    { id: 5, text: "CONTACTO", url: "/contacto" },
-  ];
+  const isBreakpoint = detectWindowWidth(768);
 
   const style = {
-    width: "35px",
+    width: "30px",
     height: "5px",
     backgroundColor: "white",
     margin: "6px 0",
@@ -30,42 +28,77 @@ const Nav = () => {
   };
 
   return (
-    <nav className="bg-black flex justify-between items-center h-24 w-100 mx-auto px-4 text-white">
-      {/* Logo */}
-      <h1 className="w-full text-3xl font-bold text-[#00df9a]">
-        Miquel Rodrigo
-      </h1>
+    <nav className="bg-transparent bg-gradient-to-b from-black to-transparent fixed flex items-center h-24 w-full px-4 text-white z-10">
+      <div className="w-full z-30">
+        {/* Nombre */}
+        <Link
+          href={"/"}
+          className={`flex mt-1 ${
+            isBreakpoint ? "justify-start text-3xl" : "justify-center text-4xl"
+          }`}
+        >
+          <h1 className="font-bold text-[#00df9a]">Miquel Rodrigo</h1>
+        </Link>
 
-      {/* Mobile Navigation Icon */}
-      <div className="inline-block cursor-pointer z-10" onClick={handleNav}>
-        <div
-          style={style}
-          className={nav && "rotate-45 translate-y-[11px]"}
-        ></div>
-        <div style={style} className={nav && "opacity-0"}></div>
-        <div
-          style={style}
-          className={nav && "-rotate-45 translate-y-[-11px]"}
-        ></div>
+        <div className="flex items-center absolute top-8 right-8">
+          {/* Idiomas */}
+          <div className="mr-5">
+            <Link href={""} className="hoverItem">
+              {isBreakpoint ? "ES" : "Español"}
+            </Link>
+          </div>
+          <div className="mr-5">
+            <Link href={""} className="hoverItem">
+              {isBreakpoint ? "EN" : "English"}
+            </Link>
+          </div>
+
+          {/* Icono menu hamburguesa */}
+          <div className="cursor-pointer inline-block" onClick={handleNav}>
+            <div
+              style={style}
+              className={nav && "rotate-45 translate-y-[11px]"}
+            ></div>
+            <div style={style} className={nav && "opacity-0"}></div>
+            <div
+              style={style}
+              className={nav && "-rotate-45 translate-y-[-11px]"}
+            ></div>
+          </div>
+        </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
-      <ul
-        className={`fixed right-0 top-0 w-full h-full flex flex-col items-center justify-center bg-[#000300] ease-in-out duration-500
-          ${!nav && "hidden"}`}
+      {/* Nav menu */}
+      <div
+        className={`fixed top-0 right-0 w-full h-full flex flex-col items-center justify-center bg-black z-20 ${
+          !nav && "hidden"
+        }`}
       >
-        {/* Mobile Navigation Items */}
-        {navItems.map((item) => (
-          <li
-            key={item.id}
-            className="p-4 border-b hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600"
-          >
-            <Link href={item.url}>{item.text}</Link>
-          </li>
-        ))}
-      </ul>
+        <ul className="flex flex-col items-center">
+          {/* Nav items */}
+          {navItems.map((item) => (
+            <li key={item.id} className="p-4 duration-300">
+              <Link
+                href={item.url}
+                onClick={handleNav}
+                className="relative hoverItem"
+              >
+                {item.text}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="flex justify-between w-[5em]">
+          <IconButton
+            icon={<FaInstagramSquare />}
+            url={"https://www.google.es/"}
+          ></IconButton>
+          <IconButton
+            icon={<FaYoutube />}
+            url={"https://www.google.es/"}
+          ></IconButton>
+        </div>
+      </div>
     </nav>
   );
-};
-
-export default Nav;
+}

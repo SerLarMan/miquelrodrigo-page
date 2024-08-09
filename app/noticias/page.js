@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <section>
-      <h2>Galería</h2>
+      <h1>Noticias</h1>
     </section>
   );
 }

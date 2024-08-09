@@ -22,11 +22,36 @@ body {
   background-color: #f4f4f9;
 }
 
-section {
-  text-align: center;
+.hoverItem:after {
+  content: "";
+  position: absolute;
+  height: 3px;
+  left: 50%;
+  bottom: -5px;
+  width: 0;
+  background: white;
+  transition: all 0.1s;
+}
+
+.hoverItem:hover:after {
+  left: 0;
+  width: 100%;
 }
 
 footer {
   background-color: var(--black);
   color: var(--white);
+}
+
+@media only screen and (min-width: 768px) {
+  .bannerText {
+    text-align: left;
+    top: 30%;
+    left: 6em;
+    width: 40em;
+  }
+
+  .bannerText a {
+    align-self: flex-start;
+  }
 }
