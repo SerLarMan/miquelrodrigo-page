@@ -4,7 +4,7 @@ import Button from "./button";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col bg-secondary-100 p-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <footer className="bg-primary-500 p-10 grid grid-cols-1 md:grid-cols-2 gap-4 text-background">
       <div className="flex flex-col">
         <p>Contactar a través de Email</p>
         <Button text={"CONTACTAR"} url={"/contacto"} />
