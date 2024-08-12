@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-https://coolors.co/bcabae-0f0f0f-2d2e2e-716969-fbfbfb
-*/
-
-:root {
-  --black: #252422;
-  --white: #ccc5b9;
-}
-
 html {
   padding: 0;
   margin: 0;
@@ -19,7 +10,8 @@ html {
 
 body {
   font-family: "Arial", sans-serif;
-  background-color: #f4f4f9;
+  color: black;
+  background-color: white;
 }
 
 .hoverItem:after {
@@ -36,11 +28,6 @@ body {
 .hoverItem:hover:after {
   left: 0;
   width: 100%;
-}
-
-footer {
-  background-color: var(--black);
-  color: var(--white);
 }
 
 @media only screen and (min-width: 768px) {

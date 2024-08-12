@@ -10,29 +10,16 @@ export default function Home() {
           className="object-cover w-full h-screen filter brightness-50"
         />
 
-        <div className="px-4 flex flex-col gap-4 text-center text-white absolute top-[20vh] w-full bannerText">
+        <div className="px-4 flex flex-col gap-4 text-center absolute top-[20vh] w-full bannerText">
           <h2 className="text-3xl">Titulo titulo titulo</h2>
 
           <p className="text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at
-            quam sodales, elementum lacus sit amet, elementum massa. Maecenas
-            eget auctor neque. In sit amet eleifend ipsum. Fusce ac nisl arcu.
-            Ut maximus turpis nec turpis egestas, eget tristique ex fermentum.
-            In in augue ut lorem lacinia pharetra vitae nec nibh. Suspendisse
-            potenti.
-          </p>
-          <p className="text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at
-            quam sodales, elementum lacus sit amet, elementum massa. Maecenas
-            eget auctor neque. In sit amet eleifend ipsum. Fusce ac nisl arcu.
-            Ut maximus turpis nec turpis egestas, eget tristique ex fermentum.
-            In in augue ut lorem lacinia pharetra vitae nec nibh. Suspendisse
-            potenti.
+            Director absolutamente polifacético, con una dilatada carrera internacional
           </p>
 
           <Link
             href={"/biografia"}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-fit flex self-center"
+            className="bg-[var(--brown)] border-2 border-[var(--gold)] hover:bg-blue-700 font-bold py-2 px-4 rounded w-fit flex self-center"
           >
             LEER MÁS
           </Link>

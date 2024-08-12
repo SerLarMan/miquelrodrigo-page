@@ -22,13 +22,13 @@ export default function NavBar() {
   const style = {
     width: "30px",
     height: "5px",
-    backgroundColor: "white",
+    backgroundColor: "var(--secondary)",
     margin: "6px 0",
     transition: "0.4s",
   };
 
   return (
-    <nav className="bg-transparent bg-gradient-to-b from-black to-transparent fixed flex items-center h-24 w-full px-4 text-white z-10">
+    <nav className="bg-transparent bg-gradient-to-b from-black to-transparent fixed flex items-center h-24 w-full px-4 z-10">
       <div className="w-full z-30">
         {/* Nombre */}
         <Link
@@ -70,7 +70,7 @@ export default function NavBar() {
 
       {/* Nav menu */}
       <div
-        className={`fixed top-0 right-0 w-full h-full flex flex-col items-center justify-center bg-black z-20 ${
+        className={`fixed top-0 right-0 w-full h-full flex flex-col items-center justify-center bg-[var(--primary)] z-20 ${
           !nav && "hidden"
         }`}
       >
