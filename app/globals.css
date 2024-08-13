@@ -9,7 +9,6 @@ html {
 }
 
 body {
-  font-family: "Arial", sans-serif;
   color: black;
   background-color: white;
 }
@@ -32,7 +31,6 @@ body {
 
 @media only screen and (min-width: 768px) {
   .bannerText {
-    text-align: left;
     top: 30%;
     left: 6em;
     width: 40em;

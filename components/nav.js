@@ -4,9 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { navItems } from "@/lib/utils/navitems";
 import IconButton from "./icon-button";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
 import { detectWindowWidth } from "@/lib/utils/window";
+import CircumIcon from "@klarr-agency/circum-icons-react";
+import localFont from 'next/font/local'
+
+const pageTitleFont = localFont({ src: '../public/fonts/Charm-Bold.ttf' })
+
 
 export default function NavBar() {
   // Estado para manejar la visibilidad del navbar
@@ -22,22 +25,24 @@ export default function NavBar() {
   const style = {
     width: "30px",
     height: "5px",
-    backgroundColor: "var(--secondary)",
+    backgroundColor: "white",
     margin: "6px 0",
     transition: "0.4s",
   };
 
   return (
-    <nav className="bg-transparent bg-gradient-to-b from-black to-transparent fixed flex items-center h-24 w-full px-4 z-10">
+    <nav className="bg-transparent bg-gradient-to-b from-black to-trasparent text-white fixed flex items-center h-24 w-full px-4 z-10">
       <div className="w-full z-30">
         {/* Nombre */}
         <Link
           href={"/"}
           className={`flex mt-1 ${
-            isBreakpoint ? "justify-start text-3xl" : "justify-center text-4xl"
+            isBreakpoint ? "justify-start text-4xl" : "justify-center text-5xl"
           }`}
         >
-          <h1 className="font-bold text-[#00df9a]">Miquel Rodrigo</h1>
+          <h1 className={`font-bold text-white ${pageTitleFont.className}`}>
+            Miquel Rodrigo
+          </h1>
         </Link>
 
         <div className="flex items-center absolute top-8 right-8">
@@ -70,7 +75,7 @@ export default function NavBar() {
 
       {/* Nav menu */}
       <div
-        className={`fixed top-0 right-0 w-full h-full flex flex-col items-center justify-center bg-[var(--primary)] z-20 ${
+        className={`fixed top-0 right-0 w-full h-full flex flex-col items-center justify-center bg-primary-600 z-20 ${
           !nav && "hidden"
         }`}
       >
@@ -81,20 +86,22 @@ export default function NavBar() {
               <Link
                 href={item.url}
                 onClick={handleNav}
-                className="relative hoverItem"
+                className="relative hoverItem text-lg"
               >
                 {item.text}
               </Link>
             </li>
           ))}
         </ul>
-        <div className="flex justify-between w-[5em]">
+        <div className="flex flex-col gap-5 items-center w-full">
           <IconButton
-            icon={<FaInstagramSquare />}
+            icon={<CircumIcon name="instagram" size="1.5rem" />}
+            text={"Instagram"}
             url={"https://www.google.es/"}
           ></IconButton>
           <IconButton
-            icon={<FaYoutube />}
+            icon={<CircumIcon name="youtube" size="1.5rem" />}
+            text={"Youtube"}
             url={"https://www.google.es/"}
           ></IconButton>
         </div>
