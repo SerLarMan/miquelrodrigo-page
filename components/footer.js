@@ -6,7 +6,7 @@ import CircumIcon from "@klarr-agency/circum-icons-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-500 p-10 flex flex-col justify-center gap4 text-white">
+    <footer className="bg-primary p-10 flex flex-col justify-center gap4 text-white">
       <div className="flex flex-col md:flex-row md:justify-between">
         <div className="flex flex-col items-center md:items-start mb-4">
           <p className="text-2xl mb-4">Contactar a través de Email</p>
@@ -39,7 +39,12 @@ export default function Footer() {
           <ul className="flex flex-wrap gap-3 font-bold justify-center mb-4">
             {navItems.map((item) => (
               <li key={item.id}>
-                <Link href={item.url}>{item.text}</Link>
+                <Link
+                  href={item.url}
+                  className="relative hoverItem hover:text-white hover:after:bg-white"
+                >
+                  {item.text}
+                </Link>
               </li>
             ))}
           </ul>

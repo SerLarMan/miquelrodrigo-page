@@ -19,7 +19,7 @@ export default function Home() {
 
           <p className="text-xl">
             Director absolutamente polifacético, con una dilatada carrera
-            internacional
+            internacional.
           </p>
 
           <div>
@@ -57,7 +57,7 @@ export default function Home() {
       </section>
 
       <section>
-        <h2>Última Noticia</h2>
+        <h2 className="text-2xl font-bold">ÚLTIMA NOTICIA</h2>
       </section>
 
       <section>
