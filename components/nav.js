@@ -1,12 +1,10 @@
 "use client";
 
-import IconButton from "./icon-button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navItems } from "@/lib/utils/navitems";
 import { DetectWindowWidth } from "@/lib/utils/window";
-import CircumIcon from "@klarr-agency/circum-icons-react";
 import localFont from "next/font/local";
 import { motion } from "framer-motion";
 
@@ -24,7 +22,7 @@ export default function NavBar() {
   };
 
   // Variable para saber si es dispositivo movil o escritorio
-  const isBreakpoint = DetectWindowWidth(768);
+  const isBreakpoint = DetectWindowWidth(1007);
 
   // Estilos para el menú hamburguesa que se convierte en xruz
   const style = {
@@ -36,34 +34,100 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="bg-transparent bg-gradient-to-b from-black to-trasparent text-white fixed flex items-center h-24 w-full px-4 z-10">
-      <div className="w-full z-30">
-        {/* Nombre */}
+    <nav
+      className={`bg-transparent bg-gradient-to-b from-black to-trasparent text-white fixed grid ${
+        isBreakpoint ? "grid-cols-2 px-7" : "grid-cols-[5rem_1fr_1fr] px-20"
+      } gap-20 h-24 w-full pt-7 z-10`}
+    >
+      {/* Nombre */}
+      <div className="flex items-center justify-self-start z-30">
         <Link
           href={"/"}
-          className={`flex mt-1 ${
-            isBreakpoint ? "justify-start text-4xl" : "justify-center text-5xl"
-          }`}
+          onClick={isBreakpoint && nav ? handleNav : ""}
+          className={isBreakpoint ? "text-4xl" : "text-5xl"}
         >
           <h1 className={`font-bold text-white ${pageTitleFont.className}`}>
-            Miquel Rodrigo
+            MR
           </h1>
         </Link>
+      </div>
 
-        <div className="flex items-center absolute top-8 right-8">
-          {/* Idiomas */}
-          <div className="mr-5">
-            <Link href={""} className="hoverItem">
-              {isBreakpoint ? "ES" : "Español"}
-            </Link>
-          </div>
-          <div className="mr-5">
-            <Link href={""} className="hoverItem">
-              {isBreakpoint ? "EN" : "English"}
-            </Link>
-          </div>
+      {/* NavLinks */}
+      {isBreakpoint ? (
+        /* Movile */
+        <div
+          className={`fixed top-0 right-0 w-full h-full flex flex-col items-center justify-center bg-primary z-20 ${
+            !nav && "hidden"
+          }`}
+        >
+          <ul className="flex flex-col items-center gap-4">
+            {navItems.map((item) => (
+              <li key={item.id} className="p-4 duration-300">
+                <Link
+                  href={item.url}
+                  onClick={handleNav}
+                  className={`hoverItem text-lg ${
+                    pathname === item.url &&
+                    "text-secondary-300 after:w-full after:left-0 after:bg-secondary-300"
+                  }`}
+                >
+                  {item.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        /* Desktop */
+        <div className="flex items-center">
+          <ul className="flex gap-20">
+            {navItems.map(
+              (item) =>
+                item.text != "INICIO" && (
+                  <li key={item.id} className="p-4 duration-300">
+                    <Link
+                      href={item.url}
+                      className={`hoverItem text-lg ${
+                        pathname === item.url &&
+                        "text-secondary-300 after:w-full after:left-0 after:bg-secondary-300"
+                      }`}
+                    >
+                      {item.text}
+                    </Link>
+                  </li>
+                )
+            )}
+          </ul>
+        </div>
+      )}
 
-          {/* Icono menu hamburguesa */}
+      <div className="flex items-center justify-self-end z-30">
+        {/* Idiomas */}
+        <div className="mr-5">
+          <Link
+            href={""}
+            className={`hoverItem ${
+              !pathname.includes("/en") &&
+              "text-secondary-300 after:w-full after:left-0 after:bg-secondary-300"
+            }`}
+          >
+            {isBreakpoint ? "ES" : "Español"}
+          </Link>
+        </div>
+        <div className="mr-5">
+          <Link
+            href={`en/${pathname}`}
+            className={`hoverItem ${
+              pathname.includes("/en") &&
+              "text-secondary-300 after:w-full after:left-0 after:bg-secondary-300"
+            }`}
+          >
+            {isBreakpoint ? "EN" : "English"}
+          </Link>
+        </div>
+
+        {/* Icono menu hamburguesa */}
+        {isBreakpoint && (
           <div className="cursor-pointer inline-block" onClick={handleNav}>
             <div
               style={style}
@@ -75,44 +139,7 @@ export default function NavBar() {
               className={nav && "-rotate-45 translate-y-[-11px]"}
             ></div>
           </div>
-        </div>
-      </div>
-
-      {/* Nav menu */}
-      <div
-        className={`fixed top-0 right-0 w-full h-full flex flex-col items-center justify-center bg-primary-600 z-20 ${
-          !nav && "hidden"
-        }`}
-      >
-        <ul className="flex flex-col items-center">
-          {/* Nav items */}
-          {navItems.map((item) => (
-            <li key={item.id} className="p-4 duration-300">
-              <Link
-                href={item.url}
-                onClick={handleNav}
-                className={`relative hoverItem text-lg ${
-                  pathname === item.url &&
-                  "text-secondary-300 after:w-full after:left-0 after:bg-secondary-300"
-                }`}
-              >
-                {item.text}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <div className="flex flex-col gap-5 items-center w-full">
-          <IconButton
-            icon={<CircumIcon name="instagram" size="1.5rem" />}
-            text={"Instagram"}
-            url={"https://www.google.es/"}
-          ></IconButton>
-          <IconButton
-            icon={<CircumIcon name="youtube" size="1.5rem" />}
-            text={"Youtube"}
-            url={"https://www.google.es/"}
-          ></IconButton>
-        </div>
+        )}
       </div>
     </nav>
   );

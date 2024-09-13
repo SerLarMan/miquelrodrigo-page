@@ -1,47 +1,51 @@
+"use client";
+
 import Link from "next/link";
 import { navItems } from "@/lib/utils/navitems";
+import { DetectWindowWidth } from "@/lib/utils/window";
 import IconButton from "./icon-button";
-import Button from "./button";
-import CircumIcon from "@klarr-agency/circum-icons-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faLinkedinIn,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
+  // Variable para saber si es dispositivo movil o escritorio
+  const isBreakpoint = DetectWindowWidth(1007);
+
   return (
-    <footer className="bg-primary p-10 flex flex-col justify-center gap4 text-white">
-      <div className="flex flex-col md:flex-row md:justify-between">
-        <div className="flex flex-col items-center md:items-start mb-4">
-          <p className="text-2xl mb-4">Contactar a través de Email</p>
-          <Button text={"CONTACTAR"} url={"/contacto"} />
+    <footer>
+      <div className="bg-primary-100 p-5 flex flex-col justify-between gap-10">
+        <div className="flex justify-center gap-5">
+          <IconButton
+            icon={<FontAwesomeIcon icon={faInstagram} className="fa-fw" />}
+            url={"https://www.google.es/"}
+          ></IconButton>
+          <IconButton
+            icon={<FontAwesomeIcon icon={faYoutube} className="fa-fw" />}
+            url={"https://www.google.es/"}
+          ></IconButton>
+          <IconButton
+            icon={<FontAwesomeIcon icon={faLinkedinIn} className="fa-fw" />}
+            url={"https://www.google.es/"}
+          ></IconButton>
         </div>
 
-        <div className="flex flex-col">
-          <p className="text-lg mb-4">
-            Echa un vistazo a las redes sociales para estar al día
-          </p>
-          <div className="flex justify-center gap-4">
-            <IconButton
-              icon={<CircumIcon name="instagram" size="1.5rem" />}
-              text={"Instagram"}
-              url={"https://www.google.es/"}
-            ></IconButton>
-            <IconButton
-              icon={<CircumIcon name="youtube" size="1.5rem" />}
-              text={"Youtube"}
-              url={"https://www.google.es/"}
-            ></IconButton>
-          </div>
-        </div>
-      </div>
+        <hr className={!isBreakpoint && "w-[50%] self-center"}></hr>
 
-      <hr className="bg-white w-full h-[2px] my-7" />
-
-      <div className="flex flex-col md:flex-row md:justify-between">
         <div>
-          <ul className="flex flex-wrap gap-3 font-bold justify-center mb-4">
+          <ul
+            className={`flex flex-wrap text-white justify-center mb-4 ${
+              isBreakpoint ? "gap-7" : "gap-20"
+            }`}
+          >
             {navItems.map((item) => (
               <li key={item.id}>
                 <Link
                   href={item.url}
-                  className="relative hoverItem hover:text-white hover:after:bg-white"
+                  className="hoverItem hover:text-white hover:after:bg-white"
                 >
                   {item.text}
                 </Link>
@@ -49,12 +53,12 @@ export default function Footer() {
             ))}
           </ul>
         </div>
+      </div>
 
-        <div>
-          <span className="text-primary-300">
-            &copy; 2024 Miquel Rodrigo. Todos los derechos reservados
-          </span>
-        </div>
+      <div className="bg-primary-300 p-3 flex justify-center">
+        <span className="text-primary">
+          &copy; 2024 Miquel Rodrigo. Todos los derechos reservados
+        </span>
       </div>
     </footer>
   );

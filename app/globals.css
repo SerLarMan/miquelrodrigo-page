@@ -13,6 +13,10 @@ body {
   background-color: white;
 }
 
+.hoverItem {
+  position: relative;
+}
+
 .hoverItem:after {
   content: "";
   position: absolute;
@@ -34,7 +38,7 @@ body {
   background: theme("colors.secondary.300");
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1007px) {
   .bannerText {
     top: 30%;
     left: 6em;
