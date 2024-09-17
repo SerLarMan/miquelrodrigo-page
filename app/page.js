@@ -12,14 +12,19 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center gap-10">
-      <section className="relative">
+      <section className="w-screen h-screen relative overflow-hidden bg-primary">
         <Image
-          src="/bannerImg.png"
-          width={500}
-          height={500}
+          src="/esta.jpg"
           alt="Miquel Rodrigo dirigiendo"
-          className="object-cover w-full h-screen filter brightness-50 scale-x-[-1]"
-          priority={true}
+          sizes="100vw"
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+          width={500}
+          height={300}
+          priority
+          className={`absolute object-cover brightness-90 ${isBreakpoint ? "object-[35%_0]" : "scale-105 -translate-x-40 object-left"}`}
         />
 
         <div
